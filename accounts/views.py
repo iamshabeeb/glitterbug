@@ -107,6 +107,7 @@ def login(request):
                 query = requests.utils.urlparse(url).query
                 print(query)
                 params = dict(x.split('=') for x in query.split('&'))
+                print(params)
                 if 'next' in params:
                     nextPage = params['next']
                     return redirect(nextPage)
