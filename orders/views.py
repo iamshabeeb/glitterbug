@@ -1,5 +1,5 @@
-from urllib import response
-from django.http import HttpResponse, JsonResponse
+
+from django.http import JsonResponse
 from django.shortcuts import render,redirect
 from carts.models import CartItem
 from .forms import OrderForm

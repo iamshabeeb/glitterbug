@@ -1,5 +1,4 @@
-from ast import Not
-from distutils.command.upload import upload
+
 import email
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
