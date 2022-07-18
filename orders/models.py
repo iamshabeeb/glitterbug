@@ -24,7 +24,7 @@ class Order(models.Model):
     STATUS = (
         ('New', 'New'),
         ('Accepted', 'Accepted'),
-        ('Completed', 'Completed'),
+        ('success', 'success'),
         ('Cancelled', 'Cancelled'),
     )
 
