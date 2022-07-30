@@ -2,6 +2,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render,redirect
 from carts.models import CartItem
+from category.models import Category
 from .forms import OrderForm
 import datetime
 from .models import Order, OrderProduct,Payment
@@ -43,6 +44,7 @@ def payments(request):
         orderproduct.quantity = item.quantity
         orderproduct.product_price = item.product.price
         orderproduct.ordered = True
+        orderproduct.category = item.product.category
         orderproduct.save()
 
         cart_item = CartItem.objects.get(id=item.id)
@@ -55,6 +57,9 @@ def payments(request):
     # reduce the quantity of sold product
 
         product = Product.objects.get(id=item.product_id)
+        cat = Category.objects.get(id=product.category.id)
+        cat.count_sold += item.quantity
+        cat.save()
         product.stock -= item.quantity
         product.save()
 

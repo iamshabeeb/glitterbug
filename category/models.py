@@ -10,10 +10,13 @@ class Category(models.Model):
     slug = models.SlugField(max_length=100,unique=True)
     description = models.TextField(max_length=255,blank = True)
     cat_images = models.ImageField(upload_to = 'photos/categories',blank = True)
-
+    count_sold = models.IntegerField(default=0)
+    is_available = models.BooleanField(default=True)
+    
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+        
     def get_url(self):
         return reverse('products_by_category', args = [self.slug])
 

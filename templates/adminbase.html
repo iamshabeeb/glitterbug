@@ -65,8 +65,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Components:</h6>
                         <a class="collapse-item" href="{% url 'user_table' %}">View User</a>
-                        <a class="collapse-item" href="{% url 'banned_user' %}">Banned User</a>
+                        <a class="collapse-item" href="{% url 'banned_user' %}">View Banned User</a>
                     </div>
+                    
                 </div>
             </li>
 
@@ -80,9 +81,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Orders:</h6>
                         <a class="collapse-item" href="{% url 'view_orders' %}">View Orders</a>
-                        {% comment %} <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a> {% endcomment %}
+                        <a class="collapse-item" href="{% url 'accepted_orders' %}">Accepted Orders</a>
+                        <a class="collapse-item" href="{% url 'completed_orders_list' %}">Completed Orders</a>
                     </div>
                 </div>
             </li>
@@ -95,11 +95,11 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Products:</h6>
                         <a class="collapse-item" href="{% url 'view_products' %}">View Products</a>
-                        {% comment %} <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a> {% endcomment %}
+                        <a class="collapse-item" href="{% url 'unlisted_products' %}">Unlisted Products</a>
+                        
                     </div>
                 </div>
+                
             </li>
 
             <li class="nav-item">
@@ -111,6 +111,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Category:</h6>
                         <a class="collapse-item" href="{% url 'view_category' %}">View Category</a>
+                        <a class="collapse-item" href="{% url 'unlisted_category' %}">Unlisted Category</a>
                     </div>
                 </div>
             </li>
@@ -205,11 +206,11 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form action="{% url 'search_user' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="keyword">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -454,4 +455,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>

@@ -33,45 +33,34 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">User Table</h6>
+                        <div class="card-header py-3 d-flex justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Product Table</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>First Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>User Name</th>
-                                            <th>Start date</th>
-                                            <th>Last Login</th>
-                                            <th>Is Active</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Category</th>
+                                            <th>Images</th>
+                                            <th>Stock</th>
+                                            <th>Action</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <!-- {% comment %} <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> {% endcomment %} -->
                                     <tbody>
-                                        {% for user in user_details %}
+                                        {% for product_detail in product_details %}
                                         <tr>
-                                            <td>{{user.first_name}}</td>
-                                            <td>{{user.email}}</td>
-                                            <td>{{user.phone_number}}</td>
-                                            <td>{{user.username}}</td>
-                                            <td>{{user.date_joined}}</td>
-                                            <td>{{user.last_login}}</td>
-                                            <td>{{user.is_active}}</td>
-                                            <td><a href="#" class="btn btn-danger">Ban</a></td>
+                                            <td>{{product_detail.product_name}}</td>
+                                            <td>{{product_detail.price}}</td>
+                                            <td>{{product_detail.category}}</td>
+                                            <td class="text-center"><img src="{{product_detail.image.url}}" style="width: 40px; "></td>
+                                            <td>{{product_detail.stock}}</td>
+                                            <td><a href="{% url 'edit_product' product_detail.id %}"><button class="form-control btn btn-info">edit</button></a></td>
+                                            <td><a href="{% url 'list_products' product_detail.id %}"><button class="form-control btn btn-danger">list</button></a></td>
+                                            
                                         </tr>
                                         {% endfor %}
                                         

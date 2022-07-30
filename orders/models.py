@@ -1,19 +1,19 @@
-from tkinter import CASCADE
 from django.db import models
 from accounts.models import Account
 from store.models import Product, Variation
+from category.models import Category
 
 # Create your models here.
 
 class Payment(models.Model):
-    user           = models.ForeignKey(Account, on_delete=models.CASCADE)
-    payment_id     = models.CharField(max_length=100)
-    payment_signature = models.CharField(max_length=100, null=True,blank=True)
-    razorpay_order_id = models.CharField(max_length=100, null=True, blank=True)
-    payment_method = models.CharField(max_length=100)
-    amount_paid    = models.CharField(max_length=100)
-    status         = models.CharField(max_length=100)
-    created_at     = models.DateTimeField(auto_now_add=True)
+    user                = models.ForeignKey(Account, on_delete=models.CASCADE)
+    payment_id          = models.CharField(max_length=100)
+    payment_signature   = models.CharField(max_length=100, null=True,blank=True)
+    razorpay_order_id   = models.CharField(max_length=100, null=True, blank=True)
+    payment_method      = models.CharField(max_length=100)
+    amount_paid         = models.CharField(max_length=100)
+    status              = models.CharField(max_length=100)
+    created_at          = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.payment_id
@@ -24,7 +24,7 @@ class Order(models.Model):
     STATUS = (
         ('New', 'New'),
         ('Accepted', 'Accepted'),
-        ('success', 'success'),
+        ('Completed', 'Completed'),
         ('Cancelled', 'Cancelled'),
     )
 
@@ -58,9 +58,10 @@ class Order(models.Model):
         return self.first_name
 
 
-class OrderProduct(models.Model):
+class OrderProduct(models.Model):   
     order           = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment         = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
+    category        = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     user            = models.ForeignKey(Account, on_delete=models.CASCADE)
     product         = models.ForeignKey(Product, on_delete=models.CASCADE)
     variations      = models.ManyToManyField(Variation, blank=True)
@@ -69,6 +70,7 @@ class OrderProduct(models.Model):
     ordered         = models.BooleanField(default=False)
     created_at      = models.DateTimeField(auto_now_add=True)
     updated_at      = models.DateTimeField(auto_now=True)
+
 
 
     def __str__(self):

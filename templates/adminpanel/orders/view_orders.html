@@ -33,45 +33,36 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Product Table</h6>
-                            <a href="{% url 'add_user' %}"><button class=" btn btn-success " style="width: 80;">add</button></a>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Order Table</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Category</th>
-                                            <th>Images</th>
-                                            <th>Stock</th>
-                                            <th>Action</th>
+                                            <th>User Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Payment ID</th>
+                                            <th>Status</th>
+                                            <th>Total Amount</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <!-- {% comment %} <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> {% endcomment %} -->
                                     <tbody>
-                                        {% for product_detail in product_details %}
+                                        {% for order_detail in order_details %}
                                         <tr>
-                                            <td>{{product_detail.product_name}}</td>
-                                            <td>{{product_detail.price}}</td>
-                                            <td>{{product_detail.category}}</td>
-                                            <td class="text-center"><img src="{{product_detail.image.url}}" style="width: 40px; "></td>
-                                            <td>{{product_detail.stock}}</td>
-                                            <td><button class="form-control btn btn-info">edit</button></td>
-                                            <td><button class="form-control btn btn-danger">delete</button></td>
-                                            
+                                            <td>{{order_detail.first_name}}</td>
+                                            <td>{{order_detail.email}}</td>
+                                            <td>{{order_detail.phone}}</td>
+                                            <td>{{order_detail.payment}}</td>
+                                            <td>{{order_detail.status}}</td>
+                                            <td>{{order_detail.order_total}}</td>
+                                            <form action="{% url 'accept_orders' order_detail.id %}" method="POST">
+                                                {%csrf_token%}
+                                            <td><button class="form-control btn btn-info">Accept</button></td>
+                                            </form>
                                         </tr>
                                         {% endfor %}
                                         

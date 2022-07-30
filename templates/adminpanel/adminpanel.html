@@ -39,8 +39,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Earnings</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">₹{{rounded_amount}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -57,8 +57,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Profit</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">₹{{profit}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -74,18 +74,18 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Sold Products
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{sold_products}}</div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="progress progress-sm mr-2">
+                                                    {% comment %} <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: {{percentage}}%" aria-valuenow="100" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
-                                                    </div>
+                                                    </div> {% endcomment %}
                                                 </div>
                                             </div>
                                         </div>
@@ -104,8 +104,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Target (sold products)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{target}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -144,12 +144,17 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
+                                    {% comment %} <div class="chart-area">
                                         <canvas id="myAreaChart"></canvas>
+                                    </div> {% endcomment %}
+                                    <div>
+                                        <canvas id="myChart"></canvas>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
+
+                        
 
                         <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
@@ -157,7 +162,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Sources By Category</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -175,10 +180,13 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
+                                    {% comment %} <div class="chart-pie pt-4 pb-2">
                                         <canvas id="myPieChart"></canvas>
+                                    </div> {% endcomment %}
+                                    <div>
+                                        <canvas id="doughnuts"></canvas>
                                     </div>
-                                    <div class="mt-4 text-center small">
+                                    {% comment %} <div class="mt-4 text-center small">
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-primary"></i> Direct
                                         </span>
@@ -188,14 +196,14 @@
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-info"></i> Referral
                                         </span>
-                                    </div>
+                                    </div> {% endcomment %}
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    {% comment %} <div class="row">
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
@@ -347,7 +355,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> {% endcomment %}
                 <!-- /.container-fluid -->
 
             </div>
@@ -403,8 +411,69 @@
     <script src="{% static 'adminpanel/js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static 'adminpanel/js/demo/chart-pie-demo.js' %}"></script>
 
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-</html>
+    <script>
+        const labels = {{day}};
+      
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: '#4e73df',
+            borderColor: '#4e73df',
+            data: {{revenue}},
+          }]
+        };
+      
+        const config = {
+          type: 'line',
+          data: data,
+          options: {}
+        };
+      
+        const myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+        );
+    </script>
+
+
+
+    <script>
+        const data2 = {
+          labels: [
+            '{{tops_name}}',
+            '{{sets_name}}',
+            '{{outwear_name}}',
+            '{{onepiece_name}}',
+            '{{dresses_name}}',
+          ]
+          ,
+          datasets: [{
+            label: 'My First Dataset',
+            data: [{{tops_count}},{{sets_count}}, {{outwear_count}}, {{onepiece_count}}, {{dresses_count}}],
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(245, 245, 245)',
+              'rgb(133, 244, 255)',
+              'rgb(73, 92, 131)',
+            ],
+            hoverOffset: 4
+          }]
+        };
+      
+        const configpie2 = {
+          type: 'doughnut',
+          data: data2,
+        };
+      
+        const myChart2 = new Chart(
+          document.getElementById('doughnuts'),
+          configpie2
+        );
+      </script>
 
 {%endblock%}

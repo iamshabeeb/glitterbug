@@ -47,30 +47,25 @@
                                             <th>Payment ID</th>
                                             <th>Status</th>
                                             <th>Total Amount</th>
-                                            <!-- <th>Action</th> -->
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <!-- {% comment %} <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> {% endcomment %} -->
                                     <tbody>
-                                        {% for order_detail in order_details %}
+                                        {% for accepted_order in accepted_orders %}
+                                        {% if accepted_order.payment %}
                                         <tr>
-                                            <td>{{order_detail.user}}</td>
-                                            <td>{{order_detail.email}}</td>
-                                            <td>{{order_detail.phone}}</td>
-                                            <td>{{order_detail.payment}}</td>
-                                            <td>{{order_detail.status}}</td>
-                                            <td>{{order_detail.order_total}}</td>
-                                            <!-- <td><button class="form-control btn btn-danger">ban</button></td> -->
+                                            <td>{{accepted_order.first_name}}</td>
+                                            <td>{{accepted_order.email}}</td>
+                                            <td>{{accepted_order.phone}}</td>
+                                            <td>{{accepted_order.payment}}</td> 
+                                            <td>{{accepted_order.status}}</td>
+                                            <td>{{accepted_order.order_total}}</td>
+                                            <form action="{% url 'completed_order' accepted_order.id %}" method="POST">
+                                                {%csrf_token%}
+                                            <td><button class="form-control btn btn-info">Completed</button></td>
+                                            </form>
                                         </tr>
+                                        {% endif %}
                                         {% endfor %}
                                         
                                     </tbody>

@@ -33,38 +33,34 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Category Table</h6>
+                        <div class="card-header py-3 d-flex justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Product Table</h6>
+                            <a href="{% url 'add_product' %}"><button class=" btn btn-success " style="width: 80;">add</button></a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Categories</th>
-                                            <th>Category slugs</th>
-                                            <th>Description</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Category</th>
                                             <th>Images</th>
-                                            <!-- <th>Action</th> -->
+                                            <th>Stock</th>
+                                            <th>Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <!-- {% comment %} <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> {% endcomment %} -->
                                     <tbody>
-                                        {% for category_detail in category_details %}
+                                        {% for product_detail in product_details %}
                                         <tr>
-                                            <td>{{category_detail.category_name}}</td>
-                                            <td>{{category_detail.slug}}</td>
-                                            <td>{{category_detail.description}}</td>
-                                            <td class="text-center"><img src="{{category_detail.cat_images.url}}" style="width: 40px; "></td>
+                                            <td>{{product_detail.product_name}}</td>
+                                            <td>{{product_detail.price}}</td>
+                                            <td>{{product_detail.category}}</td>
+                                            <td class="text-center"><img src="{{product_detail.image.url}}" style="width: 40px; "></td>
+                                            <td>{{product_detail.stock}}</td>
+                                            <td><a href="{% url 'edit_product' product_detail.id %}"><button class="form-control btn btn-info">edit</button></a></td>
+                                            <td><a href="{% url 'delete_product' product_detail.id %}"><button class="form-control btn btn-danger">unlist</button></a></td>
                                             
                                         </tr>
                                         {% endfor %}

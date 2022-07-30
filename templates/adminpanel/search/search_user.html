@@ -34,7 +34,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Banned User Table</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">User Table</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -62,7 +62,7 @@
                                         </tr>
                                     </tfoot> {% endcomment %} -->
                                     <tbody>
-                                        {% for user in user_details %}
+                                        {% for user in users %}
                                         <tr>
                                             <td>{{user.first_name}}</td>
                                             <td>{{user.email}}</td>
@@ -71,7 +71,10 @@
                                             <td>{{user.date_joined}}</td>
                                             <td>{{user.last_login}}</td>
                                             <td>{{user.is_active}}</td>
-                                            <td><button class="form-control btn btn-danger">ban</button></td>
+                                            <form action="{% url 'ban_user' user.id %}" method="post">
+                                                {% csrf_token %}
+                                            <td><button type="submit" class="btn btn-danger">Ban</button></td>
+                                            </form>
                                         </tr>
                                         {% endfor %}
                                         
