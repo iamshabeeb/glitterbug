@@ -25,13 +25,13 @@ def adminpanel(request):
     tops_name       = tops_cat.category_name
     tops_count      = tops_cat.count_sold
     
-    sets_cat        = Category.objects.get(category_name='sets')
-    sets_name       = sets_cat.category_name
-    sets_count      = sets_cat.count_sold
+    # sets_cat        = Category.objects.get(category_name='sets')
+    # sets_name       = sets_cat.category_name
+    # sets_count      = sets_cat.count_sold
 
-    outwear_cat     = Category.objects.get(category_name='outwear')
-    outwear_name    = outwear_cat.category_name
-    outwear_count   = outwear_cat.count_sold
+    # outwear_cat     = Category.objects.get(category_name='outwear')
+    # outwear_name    = outwear_cat.category_name
+    # outwear_count   = outwear_cat.count_sold
     
     onepiece_cat = Category.objects.get(category_name='onepiece')
     onepiece_name    = onepiece_cat.category_name
@@ -59,12 +59,12 @@ def adminpanel(request):
         'sold_products':sold_products,
         'target':target,
         'percentage':percentage,
-        'sets_count':sets_count,
-        'sets_name':sets_name,
+        # 'sets_count':sets_count,
+        # 'sets_name':sets_name,
         'tops_name':tops_name,
         'tops_count':tops_count,
-        'outwear_name':outwear_name,
-        'outwear_count':outwear_count,
+        # 'outwear_name':outwear_name,
+        # 'outwear_count':outwear_count,
         'onepiece_name':onepiece_name,
         'onepiece_count':onepiece_count,
         'dresses_name':dresses_name,
