@@ -91,10 +91,11 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST':'localhost'
+        'NAME': 'Glitterbug',
+        'USER': 'postgres',
+        'PASSWORD': 'iamshabi101',
+        'HOST':'localhost',
+        'PORT' : 5432
     }
 }
 
@@ -139,7 +140,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
-    'glitterbug/static'
+    'glitterbug/static' 
 ]
 
 # media files configuration
@@ -168,6 +169,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
 
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_FILE_OVERWRITE = False
