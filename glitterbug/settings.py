@@ -140,7 +140,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
-    'glitterbug/static' 
+    'static' 
 ]
 
 # media files configuration
