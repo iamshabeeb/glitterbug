@@ -97,6 +97,7 @@ DATABASES = {
         'HOST':'localhost',
         'PORT' : config ('DB_PORT', cast=int)
     }
+}
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'Glitterbug',
