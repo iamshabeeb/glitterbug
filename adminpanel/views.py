@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-import idna
 from accounts.models import Account
 from orders.models import Order, OrderProduct,Payment
 from category.models import Category
@@ -60,10 +59,10 @@ def adminpanel(request):
         'sold_products':sold_products,
         'target':target,
         'percentage':percentage,
-        'sets_count':sets_count,
-        'sets_name':sets_name,
-        'tops_name':tops_name,
-        'tops_count':tops_count,
+        # 'sets_count':sets_count,
+        # 'sets_name':sets_name,
+        # 'tops_name':tops_name,
+        # 'tops_count':tops_count,
         'outwear_name':outwear_name,
         'outwear_count':outwear_count,
         'onepiece_name':onepiece_name,

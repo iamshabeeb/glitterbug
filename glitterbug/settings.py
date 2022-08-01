@@ -89,13 +89,21 @@ AUTH_USER_MODEL = 'accounts.Account'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': config ('DB_NAME'),
+    #     'USER': config ('DB_USER'),
+    #     'PASSWORD': config ('DB_PASSWORD'),
+    #     'HOST':'localhost',
+    #     'PORT' : config ('DB_PORT', cast=int)
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config ('DB_NAME'),
-        'USER': config ('DB_USER'),
-        'PASSWORD': config ('DB_PASSWORD'),
+        'NAME': 'Glitterbug',
+        'USER': 'postgres',
+        'PASSWORD': 'iamshabi101',
         'HOST':'localhost',
-            'PORT' : config ('DB_PORT', cast=int)
+        'PORT' : 5432
     }
 }
 
@@ -134,7 +142,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-#STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 # STAICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static')
 
@@ -173,8 +181,8 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 # STATIC_URL = 'http://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_FILE_OVERWRITE = False
+# AWS_QUERYSTRING_AUTH = False
+# AWS_S3_FILE_OVERWRITE = False
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
