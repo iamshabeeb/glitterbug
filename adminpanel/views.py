@@ -44,7 +44,7 @@ def adminpanel(request):
     #getting daily revenue
     daily_revenue = Order.objects.filter(                     
         created_at__year=chart_year,created_at__month=chart_month
-    ).order_by('created_at').annotate(day=TruncMinute('created_at')).values('day').annotate(sum=Sum('order_total')).values('day','sum')
+    ).order_by('created_at').annotate(day=TruncDay('created_at')).values('day').annotate(sum=Sum('order_total')).values('day','sum')
 
     day=[]
     revenue=[]
